@@ -143,7 +143,7 @@ export class LayoutDOMView extends DOMView
   _layout: (final=false) ->
     for child in @model.get_layoutable_children()
       child_view = @child_views[child.id]
-      if child_view._layout?
+      if child_view?._layout?
         child_view._layout(final)
 
     @render()

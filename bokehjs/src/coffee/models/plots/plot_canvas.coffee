@@ -571,15 +571,13 @@ export class PlotCanvasView extends DOMView
     return false
 
   repaint: () ->
-    if @_needs_layout()
-      @parent.partial_layout()
-    else
-      @paint()
+    if not @is_paused
+      if @_needs_layout()
+        @parent.partial_layout()
+      else
+        @paint()
 
   paint: () ->
-    if @is_paused
-      return
-
     logger.trace("PlotCanvas.render() for #{@model.id}")
 
     # Prepare the canvas size, taking HIDPI into account. Note that this may cause a resize
